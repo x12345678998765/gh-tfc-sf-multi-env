@@ -58,4 +58,3 @@ resource "snowflake_database" "demo_db4" {
   comment = "Database for Snowflake Terraform demo"
 }
 
-

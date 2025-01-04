@@ -44,7 +44,7 @@ jobs:
         id: plan
         run:  |
           cd stg
-          terraform plan
+          terraform plan -out=tfplan
 
       - name: Save Plan Artifact
         uses: actions/upload-artifact@v4

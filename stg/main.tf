@@ -10,7 +10,7 @@ terraform {
     organization = "tetran"
 
     workspaces {
-      name = "gh-actions-demo"
+      name = "gh-tfc-sf_stg"
     }
   }
 }

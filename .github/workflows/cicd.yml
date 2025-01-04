@@ -32,6 +32,7 @@ jobs:
         id: init
         run: |
           cd stg
+          pwd
           terraform init
           terraform plan -out=tfplan
         env:

@@ -58,7 +58,7 @@ jobs:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Terraform Apply (STG)
         run: |
@@ -74,7 +74,7 @@ jobs:
     if: github.event_name == 'workflow_dispatch'  # 本番環境への適用は手動トリガーを想定
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Terraform Apply (Prod)
         run: |

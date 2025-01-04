@@ -19,6 +19,9 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
 
+      - name: Change directory
+        run: cd stg
+
       - name: Terraform Plan (STG & Prod)
         run: |
           terraform init

@@ -67,3 +67,4 @@ resource "snowflake_database" "demo_db6" {
   comment = "Database for Snowflake Terraform demo"
 }
 
+

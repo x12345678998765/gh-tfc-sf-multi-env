@@ -31,15 +31,21 @@ jobs:
 
       - name: Terraform Init
         id: init
-        run: terraform init
+        run:
+          cd stg
+          terraform init
 
       - name: Terraform Validate
         id: validate
-        run: terraform validate -no-color
+        run: 
+          cd stg
+          terraform validate -no-color
 
       - name: Terraform Plan
         id: plan
-        run: terraform plan -out=tfplan
+        run: 
+          cd stg
+          terraform plan -out=tfplan
         continue-on-error: true
 
       - name: Save Plan Artifact

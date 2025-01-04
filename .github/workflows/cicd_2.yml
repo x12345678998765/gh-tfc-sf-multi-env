@@ -35,6 +35,3 @@ jobs:
           cd stg
           terraform init
           terraform apply tfplan
-        env:
-          TF_WORKSPACE: "gh-tfc-sf_stg"
-          TF_API_TOKEN: ${{ secrets.TF_API_TOKEN_STG }}

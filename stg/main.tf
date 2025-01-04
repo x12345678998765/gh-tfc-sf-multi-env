@@ -43,14 +43,12 @@ variable "SNOWFLAKE_PRIVATE_KEY" {
   sensitive   = true
 }
 
-resource "snowflake_database" "demo_db" {
-  name    = "DEMO_DB"
-  comment = "Database for Snowflake Terraform demo"
-}
-
 resource "snowflake_database" "demo_db2" {
   name    = "DEMO_DB2"
   comment = "Database for Snowflake Terraform demo2"
 }
 
-
+resource "snowflake_database" "demo_db3" {
+  name    = "DEMO_DB3"
+  comment = "Database for Snowflake Terraform demo"
+}

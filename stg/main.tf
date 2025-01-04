@@ -16,6 +16,13 @@ terraform {
 }
 
 provider "snowflake" {
+  password = var.SNOWFLAKE_PRIVATE_KEY
+}
+
+variable "SNOWFLAKE_PRIVATE_KEY" {
+  description = "Private key for Snowflake"
+  type        = string
+  sensitive   = true
 }
 
 resource "snowflake_database" "demo_db" {

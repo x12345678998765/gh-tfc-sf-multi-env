@@ -24,19 +24,27 @@ jobs:
 
       - name: Terraform Format
         id: fmt
-        run: terraform fmt -check
+        run:  |
+          cd stg
+          terraform fmt -check
         
       - name: Terraform Init
         id: init
-        run: terraform init
+        run:  |
+          cd stg
+          terraform init
 
       - name: Terraform Validate
         id: validate
-        run: terraform validate -no-color
+        run:  |
+          cd stg
+          terraform validate
 
       - name: Terraform Plan
         id: plan
-        run: terraform plan -no-color
+        run:  |
+          cd stg
+          terraform plan -out=tfplan
         continue-on-error: true
 
       - name: Save Plan Artifact

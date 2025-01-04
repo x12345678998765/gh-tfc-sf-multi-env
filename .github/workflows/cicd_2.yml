@@ -1,0 +1,23 @@
+name: Terraform Apply to STG Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  terraform-apply-stg:
+    name: "Apply to STG"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Terraform Apply (STG)
+        run: |
+          cd stg
+          terraform init
+          terraform apply tfplan
+        env:
+          TF_WORKSPACE: "gh-tfc-sf_stg"
+          TF_API_TOKEN: ${{ secrets.TF_API_TOKEN_STG }}

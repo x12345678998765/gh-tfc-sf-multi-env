@@ -15,15 +15,13 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v1
-
+        
       - name: Change directory
         run: cd stg
 
       - name: Terraform Plan (STG & Prod)
         run: |
+          cd stg
           terraform init
           terraform plan -out=tfplan
         env:

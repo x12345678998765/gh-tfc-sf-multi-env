@@ -16,10 +16,10 @@ terraform {
 }
 
 provider "snowflake" {
-  account     = var.SNOWFLAKE_ACCOUNT
-  region      = var.SNOWFLAKE_REGION
-  username    = var.SNOWFLAKE_USER
-  private_key = var.SNOWFLAKE_PRIVATE_KEY
+  account       = var.SNOWFLAKE_ACCOUNT
+  region        = var.SNOWFLAKE_REGION
+  username      = var.SNOWFLAKE_USER
+  private_key   = var.SNOWFLAKE_PRIVATE_KEY
   authenticator = var.SNOWFLAKE_AUTHENTICATOR
 }
 variable "SNOWFLAKE_ACCOUNT" {

@@ -44,5 +44,3 @@ jobs:
         run: |
           cd stg
           terraform apply -auto-approve
-        env:
-          SNOWFLAKE_PRIVATE_KEY: ${{ secrets.SNOWFLAKE_PRIVATE_KEY }}

@@ -15,14 +15,21 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
+        
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
+        with:
+          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+
+      - name: Terraform Format
+        id: fmt
+        run: terraform fmt -check
         
       - name: Change directory
         run: cd stg
 
       - name: Terraform Plan (STG & Prod)
+        id: init
         run: |
           cd stg
           terraform init
@@ -30,7 +37,11 @@ jobs:
         env:
           TF_WORKSPACE: "gh-tfc-sf_stg"
           TF_API_TOKEN: ${{ secrets.TF_API_TOKEN_STG }}
-          
+
+      - name: Terraform Validate
+        id: validate
+        run: terraform validate -no-color
+      
       - name: Save Plan Artifact
         uses: actions/upload-artifact@v4
         with:

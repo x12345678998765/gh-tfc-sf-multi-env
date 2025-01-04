@@ -13,6 +13,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Setup working directory
+        run: cd stg
+
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
         with:
@@ -20,16 +23,24 @@ jobs:
 
       - name: Terraform Format
         id: fmt
-        run: terraform fmt -check
+        run: |
+          cd stg
+          terraform fmt -check
 
       - name: Terraform Init
         id: init
-        run: terraform init
+        run: |
+          cd stg
+          terraform init
 
       - name: Terraform Validate
         id: validate
-        run: terraform validate -no-color
+        run: |
+          cd stg
+          terraform validate -no-color
 
       - name: Terraform Apply
         id: apply
-        run: terraform apply -auto-approve
+        run: |
+          cd stg
+          terraform apply -auto-approve

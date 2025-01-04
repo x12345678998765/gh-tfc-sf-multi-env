@@ -1,0 +1,63 @@
+name: Terraform CI/CD Workflow
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+jobs:
+  terraform-plan:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Terraform Plan (STG & Prod)
+        run: |
+          terraform init
+          terraform plan -out=tfplan
+        env:
+          TF_WORKSPACE: "staging"
+          TF_API_TOKEN: ${{ secrets.TF_API_TOKEN_STG }}
+          
+      - name: Save Plan Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: tfplan
+          path: tfplan
+
+  terraform-apply-stg:
+    needs: terraform-plan
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Terraform Apply (STG)
+        run: |
+          terraform init
+          terraform apply tfplan
+        env:
+          TF_WORKSPACE: "staging"
+          TF_API_TOKEN: ${{ secrets.TF_API_TOKEN_STG }}
+
+  terraform-apply-prod:
+    needs: terraform-apply-stg
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch'  # 本番環境への適用は手動トリガーを想定
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Terraform Apply (Prod)
+        run: |
+          terraform init
+          terraform apply tfplan
+        env:
+          TF_WORKSPACE: "production"
+          TF_API_TOKEN: ${{ secrets.TF_API_TOKEN_PROD }}

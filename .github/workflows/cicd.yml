@@ -26,9 +26,6 @@ jobs:
         id: fmt
         run: terraform fmt -check
         
-      - name: Change directory
-        run: cd stg
-
       - name: Terraform Init
         id: init
         run: terraform init

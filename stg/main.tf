@@ -19,7 +19,7 @@ provider "snowflake" {
   account  = var.SNOWFLAKE_ACCOUNT
   region   = var.SNOWFLAKE_REGION
   username = var.SNOWFLAKE_USER
-  password = var.SNOWFLAKE_PRIVATE_KEY
+  private_key = var.SNOWFLAKE_PRIVATE_KEY
 }
 variable "SNOWFLAKE_ACCOUNT" {
   description = "Account ID for Snowflake"

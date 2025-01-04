@@ -52,4 +52,3 @@ resource "snowflake_database" "demo_db2" {
   comment = "Database for Snowflake Terraform demo2"
 }
 
-

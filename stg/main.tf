@@ -20,6 +20,7 @@ provider "snowflake" {
   region      = var.SNOWFLAKE_REGION
   username    = var.SNOWFLAKE_USER
   private_key = var.SNOWFLAKE_PRIVATE_KEY
+  authenticator = var.SNOWFLAKE_AUTHENTICATOR
 }
 variable "SNOWFLAKE_ACCOUNT" {
   description = "Account ID for Snowflake"
@@ -40,6 +41,10 @@ variable "SNOWFLAKE_PRIVATE_KEY" {
   description = "Private key for Snowflake"
   type        = string
   sensitive   = true
+}
+variable "SNOWFLAKE_AUTHENTICATOR" {
+  description = "Authenticator for Snowflake"
+  type        = string
 }
 
 resource "snowflake_database" "demo_db" {

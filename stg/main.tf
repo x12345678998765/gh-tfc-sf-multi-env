@@ -72,5 +72,3 @@ resource "snowflake_database" "demo_db7" {
   name    = "DEMO_DB7"
   comment = "Database for Snowflake Terraform demo"
 }
-
-
